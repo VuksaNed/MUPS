@@ -1,0 +1,56 @@
+1. [WTI] P0 je pristupao memoriji 5 puta, a hit rate mu je 0.5.
+P1 je pristupao memoriji 2 puta, a hit rate mu je 0.
+P2 je pristupao memoriji 2 puta, a hit rate mu je 0.
+2. [WTI] U koraku 2. se azurira samo memorija.
+3. [WTI] P2 direktno upisuje u memoriju i podatak koji je u kesu P0 se ponistava.
+4. [WTI] Ne vrsi se dohvatanje.
+5. [WTI] Ovde se radi o write-no-allocate strategije i iz tog razloga se blok ne dovlaci u kes memoriju.
+Da bi se blok dovlacio u memoriju treba promeniti strategiju na write-allocate. Losa osobina ovog protokola
+je to sto se upis uvek vrsi u memoriju. Unapredjenje ovog protkola bi bio da se upis vrsi samo u kes, a memorija 
+bi postojala nevazeca. Na magistralu bi se slalo signal za ponistavanje ostalih keseva. Ovo bi povecalo 
+komunkijaciju izmedju keseva ali bi smanjio pristup memoriji.
+
+6. [MSI] Nakon koraka 2 u kesu P0 blok A0 ce biti u stanju M (Modified), zato sto je upisao podatak u taj blok. 
+Kes P1 blok A0 ce biti u stanju I (Invalid), zato sto je P0 izvrsio upis u taj blok.
+7. [MSI] Nakon koraka 3 u kesu P0 bloka A0 ce biti u stanju S (Shared) zato sto je prilikom citanja P1 bloka A0 P0 koji 
+je bio u stanju M imao jedini azuriranu vrednost podatka njemu dostavio podatak, kao i azurirao memoriju i iz tog
+razloga je presao u stanje S. Stanje je promenjeno u odnosu na korak 2 zato sto je u stanju dva samo on imao azuriran 
+podatak, dok u koraku 3 P0, P1 i memorija imaju azuriran podatak.
+8. [MSI] Sustinska razlika je da je podatak samo azuriran unutar svog kesa, a memorija postaje neazurna.
+9. [MSI] U koraku 7 dolazi do upisa u blok A2, a memorija ce tek nakon 8 koraka biti azurirana zato sto dolazi do citanja
+tog bloka od strane P0. Nakon zavrsetka kompletne sekvence blok A2 nece biti azuran u memoriji zato sto se upis vrsi unutar
+samog kesa, a da bi se podatak azurirao u memoriji nakon upisa mora doci do citanja tog podatka ili do izbacivanja tog podatka
+iz kesa.
+
+10. [MESI] Podatak A0 u kesu P1 u koraku 1 je u stanju M (Modified) zato sto dolazi do upisa. U koraku 2 podatak A0 u kesu P0 ce 
+imati stanje M (Modified), dok ce u kesu P1 imati stanje I (Invalid), zato sto P0 menja vrednost podatka u bloku A0 pa se svi 
+kesevi koji imaju ovaj podatak ponistavaju.
+11. [MESI] Podatak ce dostaviti P0 iz svog kesa i on ce takodje azurirati i memoriju. Nova stanja u P0 i P1 bice S (Shared).
+12. [MESI] Doci ce do prelaska iz stanja E (Exclusive) u stanje M (Modified) zato sto vrsi upis u samo svoj kes.
+13. [MESI] Podatak ce dostaviti P2 koji je bio u stanju M (Modified) i preci ce u stanje S (Shared). Takodje on ce i azurirati
+memoriju. Podatak u P0 ce biti u stanju S (Shared).
+ 
+14. [MOESI] Nakon koraka 3 blok A0 ce u kesu procesora P1 biti u stanju S (Shared), zato sto je podatak ima azurnu vrednost i
+neko drugi ima taj podatak. Procesor P0 u svom kesu ce imati stanje O (Owned) za blok A0 zato sto on prosledjuje podatak drugima 
+u slucaju da ga zatraze. Memorija nema azurnu vrednost.
+15. [MOESI] Blok A2 u kesu procesora P2 ce biti u stanju O (Owned), a u kesu procesora P0 u stanju S (Shared). Memorija nece
+imati azurnu vrednost.
+16. [MOESI] Blok A1 u kesu procesora P0 ce biti u stanju M (Modified) zato sto je on taj blok menjao i jedini on ima azurnu
+vrednost tog bloka.
+17. [MOESI] Memorija nece biti azurna.
+
+18. [DRAGON] Posle koraka 4 blok A0 u kesevima procesora P0 i P1 ce biti u stanju Sc (shared clean), dok ce prosecor P2
+biti u stanju Sm (shared modified). Svi procesori ce imati isti podatak i to je 3.
+19. [DRAGON] Ne azurira se memorija zato sto se memorija azurira jedino u slucaju da blokovi koji su u stanjima M (Modified)
+ili Sm (shared modified) budu zamenjeni.
+20. [DRAGON] Blok sa podatkom A2 ce u procesoru P0 biti u stanju Sc (shared clean), dok ce prosecor P2
+biti u stanju Sm (shared modified).
+21. [DRAGON] Bice ucitan u stanje M (Modified) zato sto je on promenio taj podatak.
+
+22. [FIREFLY] Podatak A0 u procesorima P0 i P1 se nalazi u stanju Sd (shared & not dirty). Ovo stanje oznacava da vise proseora
+ima ovaj podatak i da je memorija azurna. Ekvivalent ovom stanju u DRAGON protokolu je Sc (shared clean).
+23. [FIREFLY] Memorija se ne azurira u koraku 3, zato sto je memorija vec azurna i vrsimo samo citanje iz naseg kesa.
+24. [FIREFLY] Podatak procesor P0 dobija od procesora P2 zato sto je on imao azurnu vrednost. Zato sto dolazi do izbacivanje 
+podatka na magistralu onda dolazi i do azuriranja memorije.
+25. [FIREFLY] Podatak A2 je azuran u memoriji, dok podatak A1 nije azuran u memoriji. Procesori P0 i P2 imaju podatak A2 i on je
+u stanju Sd (shared & not dirty).

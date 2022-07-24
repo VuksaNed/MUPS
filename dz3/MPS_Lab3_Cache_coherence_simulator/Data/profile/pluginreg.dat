@@ -1,0 +1,42 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version|0.17|$
+Arch|x86-msvc|$
+
+[PLUGINS]
+npvivio.dll|$
+C:\Users\vukas\AppData\Roaming\vivio 5.1\bin\npvivio.dll|$
+5.1.0.0|$
+1652622209311|0|0|0|$
+Vivio Mozilla/Firefox player|$
+Vivio Mozilla/Firefox player 5.1.0.0|$
+1
+0|application/vivio|npvivio|vcode|$
+npMeetingJoinPluginOC.dll|$
+C:\Program Files\Microsoft Office\root\VFS\ProgramFilesX86\Mozilla Firefox\plugins\npMeetingJoinPluginOC.dll|$
+16.0.14931.20010|$
+1646381132890|0|0|0|$
+The plugin allows you to have a better experience with Microsoft Lync|$
+Microsoft Office|$
+1
+0|application/vnd.microsoft.communicator.ocsmeeting|Lync Plug-in for Firefox||$
+NPSPWRAP.DLL|$
+C:\Program Files\Microsoft Office\root\VFS\ProgramFilesX86\Microsoft Office\Office16\NPSPWRAP.DLL|$
+16.0.14931.20008|$
+1646381127209|0|0|0|$
+The plugin allows you to have a better experience with Microsoft SharePoint|$
+Microsoft Office|$
+2
+0|application/x-sharepoint|SharePoint Plug-in for Firefox||$
+1|application/x-sharepoint-uc|||$
+npvivio.dll|$
+C:\Users\vukas\Desktop\MUPS\dz3\MPS_Lab3_Cache_coherence_simulator\Data\plugins\npvivio.dll|$
+5.1.0.0|$
+1263277784000|0|0|0|$
+Vivio Mozilla/Firefox player|$
+Vivio Mozilla/Firefox player 5.1.0.0|$
+1
+0|application/vivio|npvivio|vcode|$
+
+[INVALID]

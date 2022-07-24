@@ -1,0 +1,12 @@
+Multiprocesorski sistemi (13S114MUPS, 13E114MUPS)
+----------------------------------------------------
+
+Uputstvo za pokretanje simulatora za koherenciju keš memorije
+
+Simulator je baziran na Vivio plugin-u za pretraživače poput Firefox i Internet Explorer.
+
+S obzirom na izbacivanje podrške za plugin-ove u novijim verzijama pretraživača, potrebno je pokrenuti stariju, portabilnu veziju Firefox pretraživača.
+
+Simulatoru se pristupa putem linka: http://mups.etf.rs/simulatori/vivio5.1/
+
+Ukoliko je potrebno instalirati Vivio plugin, uraditi to putem priložeog instalacionog fajla u folderu Vivio.

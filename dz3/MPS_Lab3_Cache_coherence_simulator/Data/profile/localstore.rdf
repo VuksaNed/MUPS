@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#main-window"
+                   screenX="761"
+                   screenY="-7"
+                   width="782"
+                   height="838"
+                   sizemode="maximized" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#titlebar-placeholder-on-menubar-for-caption-buttons"
+                   width="118.19999694824219" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#sidebar-title"
+                   value="" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul">
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#navigator-toolbox"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#main-window"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#titlebar-placeholder-on-menubar-for-caption-buttons"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#titlebar-placeholder-on-TabsToolbar-for-captions-buttons"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#sidebar-box"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#sidebar-title"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#titlebar-placeholder-on-TabsToolbar-for-captions-buttons"
+                   width="118.19999694824219" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#navigator-toolbox"
+                   iconsize="small" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#sidebar-box"
+                   sidebarcommand=""
+                   width=""
+                   src="" />
+</RDF:RDF>
